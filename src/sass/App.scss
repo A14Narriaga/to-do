@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+$primary-color: #1a3533;
+$secundary-color: #00ffe575;
+$text-color: rgba(245, 245, 245, 0.829);
+$hover-color: gray;
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: $text-color;
+}
+
+body {
+  background-color: $primary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  #root {
+    width: 700px;
+    max-width: 100%;
+    // background-color: red;
+    padding: 1rem;
+    header {
+      // background-color: aqua;
+      margin-bottom: 1rem;
+      font-size: 1.7rem;
+    }
+    .calendar {
+      margin-bottom: 2rem;
+      .month {
+        margin-bottom: 0.5rem;
+        color: gray;
+      }
+      .cards-days {
+        // background-color: rgb(0, 255, 128);
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-start;
+        .card-day {
+          text-align: center;
+          min-width: 3.2rem;
+          min-height: 3.2rem;
+          background-color: rgba(233, 212, 212, 0.192);
+          border-radius: 0.5rem;
+          .day {
+            color: rgba(233, 212, 212, 0.664);
+          }
+          .num {
+            font-weight: bold;
+            color: rgba(233, 212, 212, 0.479);
+          }
+          &:hover {
+            background-color: $secundary-color;
+            cursor: pointer;
+            .day {
+              color: $text-color;
+            }
+            .num {
+              color: $text-color;
+            }
+          }
+        }
+      }
+    }
+    .card-tasks {
+      background-color: #00ffe52c;
+      max-width: 20rem;
+      height: 26rem;
+      margin: 0 auto;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      box-shadow: 0px 0px 10px #00ffe550;
+      .num-tasks {
+        margin-bottom: 1rem;
+        font-weight: bold;
+        font-size: 1.3rem;
+        text-align: center;
+      }
+      .tasks {
+        // background-color: blueviolet;
+        // overflow-y: scroll;
+        width: 100%;
+        height: 86%;
+        .task {
+          // background-color: salmon;
+          line-height: 1.2rem;
+          margin-bottom: 0.5rem;
+          display: flex;
+          gap: 0.5rem;
+          .task-card {
+            // background-color: blue;
+            .tittle {
+              margin: 0;
+              font-size: 1rem;
+            }
+            .time {
+              margin: 0;
+              font-size: 0.8rem;
+              font-style: italic;
+            }
+          }
+          &:hover {
+            background-color: $hover-color;
+            cursor: pointer;
+            border-radius: 1rem;
+            padding: 0.5rem;
+          }
+        }
+      }
+    }
+    .btn {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      // background-color: blueviolet;
+      button {
+        background-color: $secundary-color;
+        border: 0;
+        padding: 0.5rem 0.9rem;
+        border-radius: 0.2rem;
+        font-size: 1rem;
+        &:hover {
+          background-color: $hover-color;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 530px) {
+    body {
+        // background-color: red;
+        height: 90vh;
+    }
+    .cards-days {
+        overflow-x: scroll;
+    }
+}

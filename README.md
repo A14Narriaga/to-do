@@ -25,3 +25,9 @@ npx yarn build
 # Notes
 - Import react doom: imrd
 - Create component: rafce
+
+# For clone repository
+To download the directory node_modules with all the things that have the package.json
+```
+npx yarn
+```
