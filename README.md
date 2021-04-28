@@ -13,6 +13,10 @@ npx create-react-app . --template typescript
 ```
 npx yarn add node-sass
 ```
+- Add Nanoid (For random ids)
+```
+npx yarn add nanoid
+```
 - Start proyect
 ```
 npx yarn start

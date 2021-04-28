@@ -1,5 +1,5 @@
 
-const TaskItem = ({ id, title, time, completed }: { id: number, title: string, time: string, completed: boolean }) => {
+const TaskItem = ({ id, title, time, completed }: { id: string, title: string, time: string, completed: boolean }) => {
     return (
         <div className="task">
             <span>{completed ? <i className="fas fa-check-circle"></i> : <i className="far fa-circle"></i>}</span>

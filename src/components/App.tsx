@@ -1,20 +1,9 @@
 import { useState } from "react"
 import "../sass/App.scss"
+import Task from "./Task"
 import TaskItem from "./TaskItem"
 import DayItem from "./DayItem"
-
-class Task {
-    id: number
-    title: string
-    time: string
-    completed: boolean
-    constructor(id: number, title: string, time: string, completed: boolean) {
-        this.id = id
-        this.title = title
-        this.time = time
-        this.completed = completed
-    }
-}
+import Form from "./Form"
 
 const FILTER_MAP = {
     all: () => true,
@@ -24,46 +13,40 @@ const FILTER_MAP = {
 const filterkeys = Object.keys(FILTER_MAP);
 
 const initialState = [
-    new Task(0, 'leer pdf false', '05:00 PM', true),
-    new Task(1, 'leer pdf true', '08:00 PM', false),
-    new Task(3, 'leer pdf false', '10:00 PM', true)
+    new Task('0', 'leer pdf false', '05:00 PM', true),
+    new Task('1', 'leer pdf true', '08:00 PM', false),
+    new Task('3', 'leer pdf false', '10:00 PM', true)
 ]
 
 const App = () => {
 
     const [tasks, setTasks] = useState(initialState)
     const [filter, setFilter] = useState('all')
-    const [show, setShow] = useState('hidde')
+    const [showModal, setShowModal] = useState('hidde')
+    const [isEditing, setIsEditing] = useState(false)
 
-    const handleChangeCompleteTask = (id: number) => {
+    const handleChangeCompleteTask = (id: string) => {
         const newTasks = tasks.map(task => {
             if(task.id === id) 
-                task.completed = !task.completed
+                return {...task, completed: !task.completed}
             return task
         })
         setTasks(newTasks)
     }
 
-    const deleteTask = (id: number) => {
-        const newTasks = tasks.map(task => {
-            if(task.id === id) 
-                task.completed = !task.completed
-            return task
-        })
+    const deleteTask = (id: string) => {
+        const newTasks = tasks.filter(task => task.id !== id)
         setTasks(newTasks)
     }
 
-    const addTask = (id: number) => {
-        const newTasks = tasks.map(task => {
-            if(task.id === id) 
-                task.completed = !task.completed
-            return task
-        })
-        setTasks(newTasks)
+    const handleShowModalAdd = () => {
+        setShowModal(showModal === 'hidde' ? '' : 'hidde')
+        setIsEditing(false)
     }
 
-    const showModal = () => {
-        setShow(show === 'hidde' ? '' : 'hidde')
+    const handleShowModalEdit = () => {
+        setShowModal(showModal === 'hidde' ? '' : 'hidde')
+        setIsEditing(true)
     }
 
     return (
@@ -93,24 +76,12 @@ const App = () => {
                 </section>
             </section>
             <div className="btn">
-                <button onClick={() => showModal()} ><i className="fas fa-plus"></i></button>
-                <button onClick={() => handleChangeCompleteTask(0)}><i className="fas fa-check"></i></button>
-                <button><i className="fas fa-trash-alt"></i></button>
-                <button><i className="fas fa-edit"></i></button>
+                <button onClick={handleShowModalAdd} ><i className="fas fa-plus"></i></button>
+                <button onClick={() => handleChangeCompleteTask('0')}><i className="fas fa-check"></i></button>
+                <button onClick={() => deleteTask('0')}><i className="fas fa-trash-alt"></i></button>
+                <button onClick={handleShowModalEdit}><i className="fas fa-edit"></i></button>
             </div>
-            <section className={`modal ${show}`}>
-                <form>
-                    <p>New Task</p>
-                    <div className="inputs">
-                        <input type="text" name="myTask" id="myTask"/>
-                        <input type="time" name="myTime" id="myTime"/>
-                    </div>
-                    <div className="options">
-                        <button>Add</button>
-                        <button>Cancel</button>
-                    </div>
-                </form>
-            </section>
+            <Form showModal={showModal} setShowModal={setShowModal} tasks={tasks} setTasks={setTasks} isEditing={isEditing}/>
         </>
     )
 }
