@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import './modal';
 
 $primary-color: #1a3533;
 $secundary-color: #00ffe575;
@@ -109,7 +110,7 @@ body {
           gap: 0.5rem;
           .task-card {
             // background-color: blue;
-            .tittle {
+            .title {
               margin: 0;
               font-size: 1rem;
             }

@@ -1,11 +1,11 @@
 
-const TaskItem = () => {
+const TaskItem = ({ id, title, time, completed }: { id: number, title: string, time: string, completed: boolean }) => {
     return (
         <div className="task">
-            <span><i className="far fa-circle"></i></span>
+            <span>{completed ? <i className="fas fa-check-circle"></i> : <i className="far fa-circle"></i>}</span>
             <div className="task-card">
-                <p className="tittle">Example task</p>
-                <p className="time">06:00 AM</p>
+                <p className="title" id={`task-${id}`}>{title}</p>
+                <p className="time">{time}</p>
             </div>
         </div>
     )

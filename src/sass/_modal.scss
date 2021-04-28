@@ -1,0 +1,60 @@
+$primary-color: #1a3533;
+$secundary-color: #00ffe575;
+$text-color: rgba(245, 245, 245, 0.829);
+$hover-color: gray;
+
+.hidde {
+    display: none;
+}
+
+.modal {
+    background-color: #1a3533b7;
+    max-width: 500px;
+    width: 90%;
+    padding: 4rem;
+    border: solid 1px whitesmoke;
+    border-radius: 1rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(1rem);
+    // display: none;
+    p {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+    }
+    .inputs {
+        #myTask {
+            background-color: rgba(255, 255, 255, 0);
+            border: 0;
+            border-bottom: 1px solid #00ffe575;
+            margin-bottom: 1rem;
+            color: whitesmoke;
+            display: block;
+        }
+        #myTime {
+            background-color: rgba(255, 255, 255, 0);
+            border: 0;
+            color: whitesmoke;
+            border-bottom: 1px solid #00ffe575;
+            margin-bottom: 2rem;
+        }
+    }
+    .options {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        button {
+            background-color: $secundary-color;
+            border: 0;
+            padding: 0.5rem 0.9rem;
+            border-radius: 0.2rem;
+            font-size: 1rem;
+            &:hover {
+              background-color: $hover-color;
+              cursor: pointer;
+            }
+          }
+    }
+}
