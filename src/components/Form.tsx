@@ -3,8 +3,8 @@ import { nanoid } from "nanoid"
 import Task from "./Task"
 
 const Form = (
-    { showModal, setShowModal, tasks, setTasks, isEditing }:
-        { showModal: string, setShowModal: any, tasks: Task[], setTasks: any, isEditing: boolean }
+    { showModal, setShowModal, tasks, setTasks, isEditing, currentTask }:
+        { showModal: string, setShowModal: any, tasks: Task[], setTasks: any, isEditing: boolean, currentTask: string }
 ) => {
 
     const [title, setTitle] =  useState('')
@@ -40,7 +40,7 @@ const Form = (
                 <div className="options">
                     {!isEditing ? 
                         <button onClick={addNewTask}>Add</button> :
-                        <button onClick={() => editTask('0')}>Edit</button>
+                        <button onClick={() => editTask(currentTask)}>Edit</button>
                     }
                     <button onClick={() => setShowModal('hidde')} >Cancel</button>
                 </div>

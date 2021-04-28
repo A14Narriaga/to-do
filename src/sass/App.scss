@@ -14,6 +14,10 @@ $hover-color: gray;
   color: $text-color;
 }
 
+.hidde {
+  display: none;
+}
+
 body {
   background-color: $primary-color;
   display: flex;
