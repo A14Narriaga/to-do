@@ -50,6 +50,9 @@ const App = () => {
     const deleteTask = (id: string) => {
         const newTasks = tasks.filter(task => task.id !== id)
         setTasks(newTasks)
+        setTaskClicked(false)
+        setShowTaskBtns('hidde')
+        setShowAddBtn('')
     }
 
     const handleShowModalAdd = () => {

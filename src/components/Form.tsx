@@ -8,7 +8,7 @@ const Form = (
 ) => {
 
     const [title, setTitle] = useState('')
-    const [time, setTime] = useState('')
+    const [time, setTime] = useState('06:00')
 
     useEffect(() => {
         if (isEditing) {
@@ -20,7 +20,7 @@ const Form = (
         }
         else {
             setTitle('')
-            setTime('')
+            setTime('06:00')
         }
     }, [isEditing, tasks, currentTask])
 
@@ -28,7 +28,7 @@ const Form = (
         setTasks([new Task(nanoid(3), title, time, false), ...tasks])
         setShowModal('hidde')
         setTitle('')
-        setTime('')
+        setTime('06:00')
     }
 
     const editTask = (id: string) => {
@@ -40,7 +40,7 @@ const Form = (
         setTasks(newTasks)
         setShowModal('hidde')
         setTitle('')
-        setTime('')
+        setTime('06:00')
     }
 
     const cancelBtn = () => {
@@ -52,7 +52,7 @@ const Form = (
             <form onSubmit={(e) => e.preventDefault()}>
                 <p>{!isEditing ? 'New' : 'Edit'} Task</p>
                 <div className="inputs">
-                    <input type="text" onChange={(e) => setTitle(e.target.value)} id="myTask" value={title} />
+                    <input placeholder="What's the plan for today ?" type="text" onChange={(e) => setTitle(e.target.value)} id="myTask" value={title} />
                     <input type="time" onChange={(e) => setTime(e.target.value)} id="myTime" value={time} />
                 </div>
                 <div className="options">
