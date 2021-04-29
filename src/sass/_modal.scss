@@ -22,7 +22,7 @@ $hover-color: gray;
     // display: none;
     p {
         font-size: 1.3rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     .inputs {
         #myTask {
@@ -33,6 +33,7 @@ $hover-color: gray;
             color: whitesmoke;
             display: block;
             width: 100%;
+            font-size: 1rem;
         }
         #myTime {
             background-color: rgba(255, 255, 255, 0);
@@ -40,18 +41,19 @@ $hover-color: gray;
             color: whitesmoke;
             border-bottom: 1px solid #00ffe575;
             margin-bottom: 2rem;
+            font-size: 1rem;
         }
     }
     .options {
         display: flex;
         justify-content: flex-end;
-        gap: 1rem;
         button {
             background-color: $secundary-color;
             border: 0;
             padding: 0.5rem 0.9rem;
             border-radius: 0.2rem;
             font-size: 1rem;
+            margin-left: 1rem;
             &:hover {
               background-color: $hover-color;
               cursor: pointer;

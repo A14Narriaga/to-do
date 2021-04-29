@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import "../sass/App.scss"
 import Task from "./Task"
 import TaskItem from "./TaskItem"
@@ -13,21 +13,27 @@ const FILTER_MAP = {
 type options = keyof typeof FILTER_MAP
 const filterkeys = Object.keys(FILTER_MAP) as Array<options>
 
-const initialState = [
-    new Task('0', 'leer pdf false', '05:00 PM', true),
-    new Task('1', 'leer pdf true', '08:00 PM', false),
-    new Task('2', 'leer pdf false', '10:00 PM', true)
-]
+const initialState: Array<Task> = JSON.parse(localStorage.getItem("tasks") || "[]")
+const filterInitialState = (localStorage.getItem("filter") || "all") as options
 
 const App = () => {
 
     const [tasks, setTasks] = useState(initialState)
-    const [filter, setFilter] = useState<options>('all')
+    const [filter, setFilter] = useState<options>(filterInitialState)
     const [showModal, setShowModal] = useState('hidde')
     const [isEditing, setIsEditing] = useState(false)
     const [showTaskBtns, setShowTaskBtns] = useState('hidde')
     const [showAddBtn, setShowAddBtn] = useState('')
     const [currentTask, setCurrentTask] = useState('')
+    const [taskClicked, setTaskClicked] = useState(false)
+
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+    }, [tasks])
+
+    useEffect(() => {
+        localStorage.setItem("filter", filter)
+    }, [filter])
 
     const handleChangeCompleteTask = (id: string) => {
         const newTasks = tasks.map(task => {
@@ -36,16 +42,14 @@ const App = () => {
             return task
         })
         setTasks(newTasks)
+        setTaskClicked(false)
         setShowTaskBtns('hidde')
         setShowAddBtn('')
-
     }
 
     const deleteTask = (id: string) => {
         const newTasks = tasks.filter(task => task.id !== id)
         setTasks(newTasks)
-        setShowTaskBtns('hidde')
-        setShowAddBtn('')
     }
 
     const handleShowModalAdd = () => {
@@ -56,21 +60,20 @@ const App = () => {
     const handleShowModalEdit = () => {
         setShowModal(showModal === 'hidde' ? '' : 'hidde')
         setIsEditing(true)
-        setShowTaskBtns('hidde')
-        setShowAddBtn('')
     }
 
     const handleTaskBtns = (id: string) => {
         // console.log(id)
         setCurrentTask(id)
-        setShowTaskBtns('')
-        setShowAddBtn('hidde')
+        setShowTaskBtns(showTaskBtns === 'hidde' ? '' : 'hidde')
+        setShowAddBtn(showAddBtn === 'hidde' ? '' : 'hidde')
+        setTaskClicked(taskClicked === false ? true : false)
     }
 
     return (
         <>
-            <header>Hello Alan,</header>
-            <section className="calendar">
+            <header>Hello,</header>
+            <section className="calendar hidde">
                 <p className="month">April</p>
                 <section className="cards-days">
                     <DayItem />
@@ -84,9 +87,20 @@ const App = () => {
                     ))}
                 </section>
                 <section className="tasks">
-                    {tasks.filter(FILTER_MAP[filter]).map(({ id, title, time, completed }) => (
-                        <TaskItem key={id} id={id} title={title} time={time} completed={completed} handleTaskBtns={handleTaskBtns} />
-                    ))}
+                    {tasks.length>0 ? 
+                        tasks.filter(FILTER_MAP[filter]).map(({ id, title, time, completed }) => (
+                        <TaskItem 
+                            key={id} 
+                            id={id} 
+                            title={title} 
+                            time={time} 
+                            completed={completed} 
+                            handleTaskBtns={handleTaskBtns} 
+                            currentTask={currentTask}
+                            taskClicked={taskClicked}
+                        />)) :
+                        <h1>Empty task list</h1>
+                    }
                 </section>
             </section>
             <div className="btn">

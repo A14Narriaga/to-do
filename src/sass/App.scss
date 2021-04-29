@@ -18,6 +18,13 @@ $hover-color: gray;
   display: none;
 }
 
+.taskSelected {
+    background-color: $hover-color;
+    cursor: pointer;
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+
 body {
   background-color: $primary-color;
   display: flex;
@@ -75,20 +82,22 @@ body {
     .card-tasks {
       background-color: #00ffe52c;
       max-width: 20rem;
-      height: 26rem;
+      height: 28rem;
       margin: 0 auto;
       padding: 1.5rem;
       border-radius: 1rem;
       margin-bottom: 2rem;
       box-shadow: 0px 0px 10px #00ffe550;
       .num-tasks {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
         font-weight: bold;
         font-size: 1.3rem;
         text-align: center;
       }
       .filters {
-        // background-color: red;
+        background-color: #00ffe51f;
+        padding: 0.3rem;
+        border-radius: 1rem;
         margin-bottom: 1rem;
         display: flex;
         justify-content: space-around;
@@ -124,19 +133,12 @@ body {
               font-style: italic;
             }
           }
-          &:hover {
-            background-color: $hover-color;
-            cursor: pointer;
-            border-radius: 1rem;
-            padding: 0.5rem;
-          }
         }
       }
     }
     .btn {
       display: flex;
       justify-content: center;
-      gap: 2rem;
       // background-color: blueviolet;
       button {
         background-color: $secundary-color;
@@ -144,6 +146,8 @@ body {
         padding: 0.5rem 0.9rem;
         border-radius: 0.2rem;
         font-size: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
         &:hover {
           background-color: $hover-color;
           cursor: pointer;
@@ -158,7 +162,7 @@ body {
         // background-color: red;
         height: 90vh;
     }
-    .cards-days {
-        overflow-x: scroll;
+    .tasks {
+      overflow-y: scroll;
     }
 }
